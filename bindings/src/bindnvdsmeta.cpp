@@ -65,10 +65,20 @@ namespace pydeepstream {
                 .value("NVDS_TRACKER_PAST_FRAME_META",
                        NVDS_TRACKER_PAST_FRAME_META,
                        pydsdoc::nvmeta::MetaTypeDoc::NVDS_TRACKER_PAST_FRAME_META)
+                .value("NVDS_TRACKER_BATCH_REID_META", NVDS_TRACKER_BATCH_REID_META,
+                       pydsdoc::nvmeta::MetaTypeDoc::NVDS_TRACKER_BATCH_REID_META)
+                .value("NVDS_TRACKER_OBJ_REID_META", NVDS_TRACKER_OBJ_REID_META,
+                       pydsdoc::nvmeta::MetaTypeDoc::NVDS_TRACKER_OBJ_REID_META)
                 .value("NVDS_AUDIO_BATCH_META", NVDS_AUDIO_BATCH_META,
                        pydsdoc::nvmeta::MetaTypeDoc::NVDS_AUDIO_BATCH_META)
                 .value("NVDS_AUDIO_FRAME_META", NVDS_AUDIO_FRAME_META,
                        pydsdoc::nvmeta::MetaTypeDoc::NVDS_AUDIO_FRAME_META)
+                .value("NVDS_PREPROCESS_FRAME_META", NVDS_PREPROCESS_FRAME_META,
+                       pydsdoc::nvmeta::MetaTypeDoc::NVDS_PREPROCESS_FRAME_META)
+                .value("NVDS_PREPROCESS_BATCH_META", NVDS_PREPROCESS_BATCH_META,
+                       pydsdoc::nvmeta::MetaTypeDoc::NVDS_PREPROCESS_BATCH_META)
+                .value("NVDS_CUSTOM_MSG_BLOB", NVDS_CUSTOM_MSG_BLOB,
+                       pydsdoc::nvmeta::MetaTypeDoc::NVDS_CUSTOM_MSG_BLOB)
                 .value("NVDS_RESERVED_META", NVDS_RESERVED_META,
                        pydsdoc::nvmeta::MetaTypeDoc::NVDS_RESERVED_META)
                 .value("NVDS_GST_CUSTOM_META", NVDS_GST_CUSTOM_META,

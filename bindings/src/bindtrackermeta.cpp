@@ -115,6 +115,20 @@ namespace pydeepstream {
                      py::keep_alive<0, 1>(), py::return_value_policy::reference,
                      pydsdoc::trackerdoc::NvDsPastFrameObjBatchDoc::list);
 
-    }
+        py::class_<NvDsReidTensorBatch>(m, "NvDsReidTensorBatch",
+                                          pydsdoc::trackerdoc::NvDsReidTensorBatchDoc::descr)
+                .def(py::init<>())
+                .def_readwrite("featureSize", &NvDsReidTensorBatch::featureSize)
+                .def_readwrite("numFilled", &NvDsReidTensorBatch::numFilled)
+                .def_readwrite("ptr_dev", &NvDsReidTensorBatch::ptr_dev)
+                .def_readwrite("ptr_host", &NvDsReidTensorBatch::ptr_host)
+                .def_readonly("priv_data", &NvDsReidTensorBatch::priv_data)
 
+                .def("cast",
+                     [](void *data) {
+                         return (NvDsReidTensorBatch *) data;
+                     },
+                     py::return_value_policy::reference,
+                     pydsdoc::trackerdoc::NvDsReidTensorBatchDoc::cast);
+    }
 }

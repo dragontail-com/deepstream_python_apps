@@ -42,7 +42,7 @@ namespace pydsdoc
                             # The casting also keeps ownership of the underlying memory
                             # in the C code, so the Python garbage collector will leave
                             # it alone
-                            user_meta=pyds.NvDsUserMeta.cast(l_user.data) 
+                            user_meta=pyds.NvDsUserMeta.cast(l_user.data)
                         except StopIteration:
                             break
                         if(user_meta and user_meta.base_meta.meta_type==pyds.NvDsMetaType.NVDS_TRACKER_PAST_FRAME_META): #Make sure metatype is correct
@@ -109,18 +109,32 @@ namespace pydsdoc
             constexpr const char* list=R"pyds(Retrieve :class:`NvDsPastFrameObjStream` object as list of :class:`NvDsPastFrameObjList`. Contains objects inside this stream.)pyds";
             constexpr const char* cast=R"pyds(cast given object/data to :class:`NvDsPastFrameObjStream`, call pyds.NvDsPastFrameObjStream.cast(data))pyds";
         }
-        
+
         namespace NvDsPastFrameObjBatchDoc
         {
             constexpr const char* descr = R"pyds(
                 Batch of lists of buffered objects. See :class:`NvDsPastFrameObj` for example usage.
-                
+
                 :ivar numAllocated: *int*, Number of blocks allocated for the list.
                 :ivar numFilled: *int*, Number of filled blocks in the list.
                 )pyds";
 
             constexpr const char* list=R"pyds(Retrieve :class:`NvDsPastFrameObjBatch` object as list of :class:`NvDsPastFrameObjStream`. Contains stream lists.)pyds";
             constexpr const char* cast=R"pyds(cast given object/data to :class:`NvDsPastFrameObjBatch`, call pyds.NvDsPastFrameObjBatch.cast(data))pyds";
+        }
+
+        namespace NvDsReidTensorBatchDoc
+        {
+            constexpr const char* descr = R"pyds(
+                ReID tensor of the batch. See the deepstream-app write_reid_track_output function for example usage.
+
+                :ivar featureSize: *int*, Each target's ReID vector length.
+                :ivar numFilled: *int*, Number of reid vectors in the batch.
+                :ivar ptr_host: *float ptr*, ReID vector on CPU.
+                :ivar ptr_dev: *float ptr*, ReID vector on GPU.
+                )pyds";
+
+            constexpr const char* cast=R"pyds(cast given object/data to :class:`NvDsReidTensorBatch`, call pyds.NvDsReidTensorBatch.cast(data))pyds";
         }
 
     }
