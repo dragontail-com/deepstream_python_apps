@@ -783,6 +783,36 @@ namespace pydeepstream {
               "data"_a,
               pydsdoc::methodsDoc::get_segmentation_masks);
 
+      m.def("get_reid_embedding", [](NvDsReidTensorBatch *reidTensor, NvDsUserMeta *user_meta) {
+                  auto reidInd = *((int32_t *) (user_meta->user_meta_data));
+                  auto featureSize = reidTensor->featureSize;
+                  py::array_t<float> vec = py::array_t<float>(featureSize);
+                  auto mutable_arr = vec.mutable_unchecked<1>();
+                  for (uint32_t i = 0; i < featureSize; i++) {
+                        mutable_arr(i) = static_cast<float>(reidTensor->ptr_host[reidInd * featureSize + i]);
+                  }
+                  // printf("Reid = ind: %d, numFilled: %d, featurevec size: %d\n", reidInd,  reidTensor->numFilled, reidTensor->featureSize);
+                  return vec;
+              },
+              "reidTensor"_a,
+              "user_meta"_a,
+              "TODO function");
+
+      // this is equivalent to the above
+      m.def("get_reid_embedding3", [](NvDsReidTensorBatch *reidTensor, NvDsUserMeta *user_meta) {
+                  auto reidInd = *((int32_t *) (user_meta->user_meta_data));
+                  auto featureSize = reidTensor->featureSize;
+                  py::capsule buffer_handle([](){});
+                  return py::array_t<float>({ featureSize },
+                                            {sizeof(float)},
+                                            &(reidTensor->ptr_host[reidInd * featureSize]),
+                                            buffer_handle);
+              },
+              "reidTensor"_a,
+              "user_meta"_a,
+              "TODO function");
+
+
         /* Start binding for /sources/includes/gst-nvevent.h */
         /**
          * Sends the custom nvevent_new_stream_reset
